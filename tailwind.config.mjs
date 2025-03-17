@@ -12,11 +12,9 @@ export default {
     },
     extend: {
       colors: {
-        purple: "#704EE7",
-        orange: "#FCCF5A",
-        "light-orange": "#FFE5A2",
-        pink: "#DFC8FD",
-        "light-gray": "#eeeeee",
+        yellow: {
+          100: "#FEF8DD",
+        },
       },
     },
   },

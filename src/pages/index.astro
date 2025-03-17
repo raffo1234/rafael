@@ -16,77 +16,164 @@ import { Image } from "astro:assets";
     </a>
     <h1
       id="title"
-      class="opacity-0 transition-opacity duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-[#004631] font-bebas-neue"
+      class="opacity-0 h-full transition-opacity duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-[#004631] font-bebas-neue items-center"
       style={{
         fontSize: "clamp(24px, 18vw + 1rem, 300px)",
       }}
     >
-      <span
-        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-        >R</span
-      >
-      <span
-        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-        >A</span
-      >
-      <span
-        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-        >F</span
-      >
-      <span
-        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-        >A</span
-      >
-      <span
-        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-        >E</span
-      >
-      <span
-        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-        >L</span
-      >&nbsp;
-      <span
-        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-        >M</span
-      >
-      <span
-        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-        >E</span
-      >
-      <span
-        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-        >Z</span
-      >
-      <span
-        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-        >A</span
-      >
+      <span class="flex">
+        <span
+          class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+          >R</span
+        >
+        <span
+          class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+          >A</span
+        >
+        <span
+          class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+          >F</span
+        >
+        <span
+          class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+          >A</span
+        >
+        <span
+          class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+          >E</span
+        >
+        <span
+          class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+          >L</span
+        >&nbsp;
+        <span
+          class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+          >M</span
+        >
+        <span
+          class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+          >E</span
+        >
+        <span
+          class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+          >Z</span
+        >
+        <span
+          class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+          >A</span
+        >
+      </span>
     </h1>
-    <div class="absolute right-6 top-6">
-      <button
-        id="menu-button-js"
-        type="button"
-        class="flex flex-col space-y-2 w-12 h-12 group justify-center"
-      >
-        <span
-          class="w-12 group-hover:w-9 transition-all duration-500 ease-in-out h-1 block bg-black"
-        ></span>
-        <span
-          class="w-9 h-1 group-hover:w-12 transition-all duration-500 ease-in-out block bg-black"
-        ></span>
-      </button>
-    </div>
+    <button
+      id="menu-button-js"
+      type="button"
+      class="flex flex-col space-y-2 w-12 h-12 group justify-center absolute right-6 top-6 z-50"
+    >
+      <span
+        class="w-12 group-hover:w-9 transition-all duration-500 ease-in-out h-1 block bg-black"
+      ></span>
+      <span
+        class="w-9 h-1 group-hover:w-12 transition-all duration-500 ease-in-out block bg-black"
+      ></span>
+    </button>
   </div>
 </Layout>
 
-<ul
-  id="menu-js"
-  class="fixed left-0 bottom-0 -rotate-45 rounded-2xl w-full h-0 delay-700 transition-all duration-700 ease-in-out bg-[#004631] flex justify-center space-x-4"
->
-  <li>
-    <a href="/portfolio">Portfolio</a>
-  </li>
-</ul>
+<nav>
+  <ul
+    id="menu-js"
+    class="fixed w-full left-0 bottom-0 rounded-2xl h-0 delay-700 transition-all duration-700 ease-in-out bg-[#004631] flex flex-col justify-center font-bebas-neue leading-[1]"
+  >
+    <li class="relative w-full">
+      <a
+        href="/portfolio"
+        class="hover:translate-x-6 transition-all duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center text-yellow-100 items-center"
+        style={{
+          fontSize: "clamp(24px, 18vw + 1rem, 300px)",
+        }}
+      >
+        <span class="flex w-full" id="menu-portfolio">
+          <span
+            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >P</span
+          >
+          <span
+            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >O</span
+          >
+          <span
+            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >R</span
+          >
+          <span
+            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >T</span
+          >
+          <span
+            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >F</span
+          >
+          <span
+            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >O</span
+          >
+          <span
+            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >L</span
+          >
+          <span
+            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >I</span
+          >
+          <span
+            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >O</span
+          >
+        </span>
+      </a>
+    </li>
+    <li class="relative w-full">
+      <a
+        href="/contact"
+        class="hover:translate-x-6 transition-all duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center text-yellow-100 font-bebas-neue items-center"
+        style={{
+          fontSize: "clamp(24px, 18vw + 1rem, 300px)",
+        }}
+      >
+        <span class="flex w-full" id="menu-contact">
+          <span
+            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >C</span
+          >
+          <span
+            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >O</span
+          >
+          <span
+            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >N</span
+          >
+          <span
+            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >T</span
+          >
+          <span
+            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >A</span
+          >
+          <span
+            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >C</span
+          >
+          <span
+            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            >T</span
+          >
+        </span>
+      </a>
+    </li>
+  </ul>
+</nav>
 
 <script is:inline>
   document.addEventListener("astro:page-load", () => {
@@ -102,7 +189,7 @@ import { Image } from "astro:assets";
     if (title) {
       title.classList.add("!opacity-100");
 
-      const letters = document.querySelectorAll("h1 span");
+      const letters = document.querySelectorAll("h1 span span");
       letters.forEach((letter, index) => {
         setTimeout(() => {
           letter.classList.add(...classes);
@@ -113,19 +200,44 @@ import { Image } from "astro:assets";
     const menuButton = document.getElementById("menu-button-js");
     if (menuButton) {
       menuButton.addEventListener("click", () => {
-        const letters = document.querySelectorAll("h1 span");
+        const lines = menuButton.querySelectorAll("span");
+        lines.forEach((line) => line.classList.add("bg-yellow-100"));
+
+        const letters = document.querySelectorAll("h1 span span");
         letters.forEach((letter, index) => {
           setTimeout(() => {
             letter.classList.remove("!opacity-100");
             letter.classList.remove("!translate-y-0");
+            letter.classList.remove("translate-y-96");
             letter.classList.add("-translate-y-96");
           }, index * 85);
         });
 
         const menu = document.getElementById("menu-js");
         menu.classList.add("!h-full");
-        menu.classList.remove("-rotate-45");
         menu.classList.remove("rounded-2xl");
+
+        const menuPortfolio = document.getElementById("menu-portfolio");
+        const portfolioLetters = menuPortfolio.querySelectorAll("span");
+        if (portfolioLetters) {
+          portfolioLetters.forEach((letter, index) => {
+            setTimeout(() => {
+              letter.classList.add("!opacity-100");
+              letter.classList.add("!translate-y-0");
+            }, index * 85);
+          });
+        }
+
+        const menuContact = document.getElementById("menu-contact");
+        const contactLetters = menuContact.querySelectorAll("span");
+        if (contactLetters) {
+          contactLetters.forEach((letter, index) => {
+            setTimeout(() => {
+              letter.classList.add("!opacity-100");
+              letter.classList.add("!translate-y-0");
+            }, index * 85);
+          });
+        }
       });
     }
   });
