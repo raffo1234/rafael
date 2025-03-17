@@ -10,11 +10,12 @@ import { Image } from "astro:assets";
       id="logo-js"
       href="/"
       title="Rafael Meza - Frontend Developer Portfolio - Responsive & Modern Designs"
-      class="opacity-0 block translate-y-10 transition-all delay-700 duration-1000 ease-in-out"
+      class="opacity-0 w-16 absolute left-4 top-4 block -translate-y-10 transition-all delay-700 duration-1000 ease-in-out"
     >
-      <Image src={logo} alt="Rafael Meza" class="w-16 absolute left-4 top-4" />
+      <Image src={logo} alt="Rafael Meza" class="block" />
     </a>
     <h1
+      id="title"
       class="opacity-0 transition-opacity duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-[#004631] font-bebas-neue"
       style={{
         fontSize: "clamp(24px, 18vw + 1rem, 300px)",
@@ -61,8 +62,31 @@ import { Image } from "astro:assets";
         >A</span
       >
     </h1>
+    <div class="absolute right-6 top-6">
+      <button
+        id="menu-button-js"
+        type="button"
+        class="flex flex-col space-y-2 w-12 h-12 group justify-center"
+      >
+        <span
+          class="w-12 group-hover:w-9 transition-all duration-500 ease-in-out h-1 block bg-black"
+        ></span>
+        <span
+          class="w-9 h-1 group-hover:w-12 transition-all duration-500 ease-in-out block bg-black"
+        ></span>
+      </button>
+    </div>
   </div>
 </Layout>
+
+<ul
+  id="menu-js"
+  class="fixed left-0 bottom-0 -rotate-45 rounded-2xl w-full h-0 delay-700 transition-all duration-700 ease-in-out bg-[#004631] flex justify-center space-x-4"
+>
+  <li>
+    <a href="/portfolio">Portfolio</a>
+  </li>
+</ul>
 
 <script is:inline>
   document.addEventListener("astro:page-load", () => {
@@ -73,16 +97,35 @@ import { Image } from "astro:assets";
       logo.classList.add(...classes);
     }
 
-    const title = document.querySelectorAll("h1");
+    const title = document.getElementById("title");
 
     if (title) {
-      title[0].classList.add("!opacity-100");
+      title.classList.add("!opacity-100");
 
       const letters = document.querySelectorAll("h1 span");
       letters.forEach((letter, index) => {
         setTimeout(() => {
           letter.classList.add(...classes);
         }, index * 85);
+      });
+    }
+
+    const menuButton = document.getElementById("menu-button-js");
+    if (menuButton) {
+      menuButton.addEventListener("click", () => {
+        const letters = document.querySelectorAll("h1 span");
+        letters.forEach((letter, index) => {
+          setTimeout(() => {
+            letter.classList.remove("!opacity-100");
+            letter.classList.remove("!translate-y-0");
+            letter.classList.add("-translate-y-96");
+          }, index * 85);
+        });
+
+        const menu = document.getElementById("menu-js");
+        menu.classList.add("!h-full");
+        menu.classList.remove("-rotate-45");
+        menu.classList.remove("rounded-2xl");
       });
     }
   });
