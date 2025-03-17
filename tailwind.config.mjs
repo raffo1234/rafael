@@ -11,6 +11,15 @@ export default {
       "nixie-one": ["Nixie One", "sans-serif"],
     },
     extend: {
+      animation: {
+        fadeOut: "fadeOut 1s ease-out forwards",
+      },
+      keyframes: {
+        fadeOut: {
+          "0%": { opacity: 100 },
+          "100%": { opacity: 0 },
+        },
+      },
       colors: {
         yellow: {
           100: "#FEF8DD",

@@ -27,7 +27,31 @@ const { pageTitle } = Astro.props;
     </title>
     <ClientRouter />
   </head>
-  <body id="app" class="bg-[#FEF8DD] h-full">
+  <body
+    id="app"
+    class="opacity-0 bg-[#FEF8DD] h-full transition-all duration-700 ease-in-out"
+  >
     <slot />
+
+    <script is:inline>
+      document.addEventListener("astro:page-load", () => {
+        const app = document.getElementById("app");
+        if (app) {
+          app.classList.remove("opacity-0");
+        }
+
+        document.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", (event) => {
+            event.preventDefault();
+            const path = event.currentTarget.getAttribute("href");
+
+            document.body.classList.add("opacity-0");
+            setTimeout(() => {
+              window.location.href = path;
+            }, 700);
+          });
+        });
+      });
+    </script>
   </body>
 </html>
