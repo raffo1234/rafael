@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import logo from "../assets/logo.svg";
+import { Image } from "astro:assets";
+---
+
+<Layout>
+  <div class="p-6 relative h-full">
+    <Image src={logo} alt="Rafael Meza" class="w-16 absolute left-4 top-4" />
+    <h1
+      class="w-full block text-center text-nowrap absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-[#004631] font-bebas-neue"
+      style={{
+        fontSize: "clamp(24px, 18vw + 1rem, 300px)",
+      }}
+    >
+      RAFAEL MEZA
+    </h1>
+  </div>
+</Layout>

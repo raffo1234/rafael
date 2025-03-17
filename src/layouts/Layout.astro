@@ -1,0 +1,33 @@
+---
+import "@fontsource/quicksand";
+import "@fontsource/raleway";
+import "@fontsource/lobster";
+import "@fontsource/bebas-neue";
+import "@fontsource/nixie-one";
+import { ClientRouter } from "astro:transitions";
+
+const { pageTitle } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content="Rafael Meza - Web Developer specializing in ReactJS. Building modern, scalable, and efficient web applications. Turn your ideas into reality with custom tech solutions. Expert in front-end development and JavaScript frameworks."
+    />
+    <title>
+      {pageTitle}
+      {pageTitle ? " | " : ""}
+      Rafael Meza | Web Developer
+    </title>
+    <ClientRouter />
+  </head>
+  <body id="app" class="bg-[#FEF8DD] h-full">
+    <slot />
+  </body>
+</html>
