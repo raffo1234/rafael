@@ -6,14 +6,84 @@ import { Image } from "astro:assets";
 
 <Layout>
   <div class="p-6 relative h-full">
-    <Image src={logo} alt="Rafael Meza" class="w-16 absolute left-4 top-4" />
+    <a
+      id="logo-js"
+      href="/"
+      title="Rafael Meza - Frontend Developer Portfolio - Responsive & Modern Designs"
+      class="opacity-0 block translate-y-10 transition-all delay-700 duration-1000 ease-in-out"
+    >
+      <Image src={logo} alt="Rafael Meza" class="w-16 absolute left-4 top-4" />
+    </a>
     <h1
-      class="w-full block text-center text-nowrap absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-[#004631] font-bebas-neue"
+      class="opacity-0 transition-opacity duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-[#004631] font-bebas-neue"
       style={{
         fontSize: "clamp(24px, 18vw + 1rem, 300px)",
       }}
     >
-      RAFAEL MEZA :D
+      <span
+        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+        >R</span
+      >
+      <span
+        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+        >A</span
+      >
+      <span
+        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+        >F</span
+      >
+      <span
+        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+        >A</span
+      >
+      <span
+        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+        >E</span
+      >
+      <span
+        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+        >L</span
+      >&nbsp;
+      <span
+        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+        >M</span
+      >
+      <span
+        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+        >E</span
+      >
+      <span
+        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+        >Z</span
+      >
+      <span
+        class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+        >A</span
+      >
     </h1>
   </div>
 </Layout>
+
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const classes = ["!opacity-100", "!translate-y-0"];
+
+    const logo = document.getElementById("logo-js");
+    if (logo) {
+      logo.classList.add(...classes);
+    }
+
+    const title = document.querySelectorAll("h1");
+
+    if (title) {
+      title[0].classList.add("!opacity-100");
+
+      const letters = document.querySelectorAll("h1 span");
+      letters.forEach((letter, index) => {
+        setTimeout(() => {
+          letter.classList.add(...classes);
+        }, index * 85);
+      });
+    }
+  });
+</script>
