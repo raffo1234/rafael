@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/react": "^4.1.3",
     "@astrojs/tailwind": "^5.1.4",
+    "@fontsource-variable/cinzel": "^5.2.5",
     "@fontsource/bebas-neue": "^5.2.5",
     "@fontsource/lobster": "^5.1.1",
     "@fontsource/manrope": "^5.1.1",

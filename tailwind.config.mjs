@@ -6,6 +6,7 @@ export default {
       quicksand: ["Quicksand", "sans-serif"],
       raleway: ["Raleway", "sans-serif"],
       manrope: ["Manrope", "sans-serif"],
+      cinzel: ["Cinzel Variable", "sans-serif"],
       "bebas-neue": ["Bebas Neue", "sans-serif"],
       lobster: ["Lobster", "sans-serif"],
       "nixie-one": ["Nixie One", "sans-serif"],
