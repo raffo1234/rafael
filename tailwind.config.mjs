@@ -24,6 +24,9 @@ export default {
         yellow: {
           100: "#FEF8DD",
         },
+        green: {
+          800: "#004631",
+        },
       },
     },
   },

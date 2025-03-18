@@ -26,6 +26,13 @@ const images = [
 ];
 ---
 
+<a
+  href="/"
+  id="close-button-js"
+  class="p-4 opacity-0 transition-all hover:-translate-x-2 duration-700 absolute flex items-center justify-center w-32 h-32 top-6 right-6"
+>
+  <Icon name="material-symbols-light:arrow-back-rounded" size="64" />
+</a>
 <Layout pageTitle="Projects">
   <Container>
     <div
@@ -36,17 +43,6 @@ const images = [
         class="relative opacity-0 transition-all translate-y-4 ease-in-out duration-700 flex w-full"
         id="slider-container-js"
       >
-        <a
-          href="/"
-          id="close-button-js"
-          class="w-[62px] transition duration-700 opacity-0 translate-y-4 flex items-center justify-center h-[62px] absolute rounded-full top-[30px] z-20 right-[30px] bg-purple"
-        >
-          <Icon
-            name="material-symbols-light:arrow-insert-rounded"
-            size="62"
-            class="text-orange -rotate-90"
-          />
-        </a>
         {
           images.map((image, index) => {
             return (
