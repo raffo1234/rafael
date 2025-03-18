@@ -1,4 +1,6 @@
 ---
+import Navigation from "./Navigation.astro";
+
 const { title } = Astro.props;
 const titleArray = title.split("");
 ---
@@ -15,99 +17,8 @@ const titleArray = title.split("");
     class="w-9 h-0.5 group-hover:w-12 transition-all duration-500 ease-in-out block bg-black"
   ></span>
 </button>
-<nav class="z-40 relative">
-  <ul
-    id="menu-js"
-    class="fixed w-full left-0 bottom-0 h-0 delay-700 transition-all duration-700 ease-in-out bg-green-800 flex flex-col justify-center font-cinzel leading-[1]"
-    style={{
-      fontSize: "clamp(20px, 13vw + .5rem, 200px)",
-    }}
-  >
-    <li class="relative w-full">
-      <a
-        href="/portfolio"
-        class="hover:translate-x-6 transition-all duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center text-yellow-100 items-center"
-      >
-        <span class="flex w-full" id="menu-portfolio">
-          <span
-            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-            >P</span
-          >
-          <span
-            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-            >O</span
-          >
-          <span
-            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-            >R</span
-          >
-          <span
-            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-            >T</span
-          >
-          <span
-            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-            >F</span
-          >
-          <span
-            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-            >O</span
-          >
-          <span
-            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-            >L</span
-          >
-          <span
-            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-            >I</span
-          >
-          <span
-            class="delay-500 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
-            >O</span
-          >
-        </span>
-      </a>
-    </li>
-    <li class="relative w-full">
-      <a
-        href="/contact"
-        class="hover:translate-x-6 transition-all duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center text-yellow-100 items-center"
-      >
-        <span class="flex w-full" id="menu-contact">
-          <span
-            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
-            >C</span
-          >
-          <span
-            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
-            >O</span
-          >
-          <span
-            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
-            >N</span
-          >
-          <span
-            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
-            >T</span
-          >
-          <span
-            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
-            >A</span
-          >
-          <span
-            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
-            >C</span
-          >
-          <span
-            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
-            >T</span
-          >
-        </span>
-      </a>
-    </li>
-  </ul>
-</nav>
-<div class="p-6 relative h-svh z-40">
+<Navigation />
+<div class="p-6 relative h-svh">
   <h1
     id="title-js"
     class="opacity-0 h-full transition-opacity duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-green-800 font-cinzel items-center leading-tight"
@@ -156,9 +67,9 @@ const titleArray = title.split("");
         const menu = document.getElementById("menu-js");
         const lines = menuButton.querySelectorAll("span");
         const letters = document.querySelectorAll("h1 span");
-        const menuPortfolio = document.getElementById("menu-portfolio");
+        const menuPortfolio = document.getElementById("option-portfolio");
         const portfolioLetters = menuPortfolio.querySelectorAll("span");
-        const menuContact = document.getElementById("menu-contact");
+        const menuContact = document.getElementById("option-contact");
         const contactLetters = menuContact.querySelectorAll("span");
 
         if (!menuButton.classList.contains("active")) {
