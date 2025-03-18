@@ -12,7 +12,8 @@ import yachayDashboard from "../assets/portfolio/dashboard-yachay.png";
 import cancino from "../assets/portfolio/cancino.png";
 import goldenpalace from "../assets/portfolio/goldenpalace.png";
 import Container from "../components/Container.astro";
-import BackButton from "../components/BackButton.astro";
+import MenuAndTitle from "../components/MenuAndTitle.astro";
+import Logo from "../components/Logo.astro";
 
 const images = [
   cancino,
@@ -27,8 +28,9 @@ const images = [
 ];
 ---
 
-<BackButton href="/" />
+<Logo />
 <Layout pageTitle="Projects">
+  <MenuAndTitle title="Portfolio" />
   <Container>
     <div
       transition:name="projects"
@@ -62,6 +64,12 @@ const images = [
   });
 
   document.addEventListener("astro:page-load", () => {
+    const logoClasses = ["!opacity-100", "!translate-y-0"];
+    const logo = document.getElementById("logo-js");
+    if (logo) {
+      logo.classList.add(...logoClasses);
+    }
+
     const sliderContainer = document.getElementById("slider-container-js");
     if (!sliderContainer) return;
     const classes = ["!translate-y-0", "!opacity-100"];
