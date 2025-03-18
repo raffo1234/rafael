@@ -12,6 +12,7 @@ import yachayDashboard from "../assets/portfolio/dashboard-yachay.png";
 import cancino from "../assets/portfolio/cancino.png";
 import goldenpalace from "../assets/portfolio/goldenpalace.png";
 import Container from "../components/Container.astro";
+import BackButton from "../components/BackButton.astro";
 
 const images = [
   cancino,
@@ -26,13 +27,7 @@ const images = [
 ];
 ---
 
-<a
-  href="/"
-  id="close-button-js"
-  class="p-4 opacity-0 transition-all hover:-translate-x-2 duration-700 absolute flex items-center justify-center w-32 h-32 top-6 right-6"
->
-  <Icon name="material-symbols-light:arrow-back-rounded" size="64" />
-</a>
+<BackButton href="/" />
 <Layout pageTitle="Projects">
   <Container>
     <div
@@ -85,12 +80,6 @@ const images = [
     const slides = document.querySelectorAll(".slide-js");
     if (slides.length > 0) {
       setInterval(showNextSlide, 1200, slides);
-    }
-
-    const closeButton = document.getElementById("close-button-js");
-    if (closeButton) {
-      const classes = ["!opacity-100", "!translate-y-0"];
-      setTimeout(() => closeButton.classList.add(...classes), 300);
     }
   });
 </script>

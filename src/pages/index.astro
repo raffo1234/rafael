@@ -5,12 +5,24 @@ import { Image } from "astro:assets";
 ---
 
 <Layout>
+  <button
+    id="menu-button-js"
+    type="button"
+    class="flex transition-all duration-500 ease-in-out flex-col space-y-2 w-12 h-12 group justify-center absolute right-6 top-6 z-50"
+  >
+    <span
+      class="w-12 group-hover:w-9 transition-all duration-500 ease-in-out h-0.5 block bg-black"
+    ></span>
+    <span
+      class="w-9 h-0.5 group-hover:w-12 transition-all duration-500 ease-in-out block bg-black"
+    ></span>
+  </button>
   <div class="p-6 relative h-full">
     <a
       id="logo-js"
       href="/"
       title="Rafael Meza - Frontend Developer Portfolio - Responsive & Modern Designs"
-      class="opacity-0 w-16 absolute left-4 top-4 block -translate-y-10 transition-all delay-700 duration-1000 ease-in-out"
+      class="opacity-0 w-16 absolute left-6 top-8 block -translate-y-10 transition-all delay-700 duration-1000 ease-in-out"
     >
       <Image src={logo} alt="Rafael Meza" class="block" />
     </a>
@@ -64,25 +76,13 @@ import { Image } from "astro:assets";
         >
       </span>
     </h1>
-    <button
-      id="menu-button-js"
-      type="button"
-      class="flex flex-col space-y-2 w-12 h-12 group justify-center absolute right-6 top-6 z-50"
-    >
-      <span
-        class="w-12 group-hover:w-9 transition-all duration-500 ease-in-out h-1 block bg-black"
-      ></span>
-      <span
-        class="w-9 h-1 group-hover:w-12 transition-all duration-500 ease-in-out block bg-black"
-      ></span>
-    </button>
   </div>
 </Layout>
 
 <nav>
   <ul
     id="menu-js"
-    class="fixed w-full left-0 bottom-0 rounded-2xl h-0 delay-700 transition-all duration-700 ease-in-out bg-green-800 flex flex-col justify-center font-bebas-neue leading-[1]"
+    class="fixed w-full left-0 bottom-0 h-0 delay-700 transition-all duration-700 ease-in-out bg-green-800 flex flex-col justify-center font-bebas-neue leading-[1]"
   >
     <li class="relative w-full">
       <a
@@ -142,31 +142,31 @@ import { Image } from "astro:assets";
       >
         <span class="flex w-full" id="menu-contact">
           <span
-            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
             >C</span
           >
           <span
-            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
             >O</span
           >
           <span
-            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
             >N</span
           >
           <span
-            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
             >T</span
           >
           <span
-            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
             >A</span
           >
           <span
-            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
             >C</span
           >
           <span
-            class="delay-1000 opacity-0 block translate-y-96 transition-all duration-700 ease-in-out"
+            class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700"
             >T</span
           >
         </span>
@@ -200,43 +200,104 @@ import { Image } from "astro:assets";
     const menuButton = document.getElementById("menu-button-js");
     if (menuButton) {
       menuButton.addEventListener("click", () => {
-        const lines = menuButton.querySelectorAll("span");
-        lines.forEach((line) => line.classList.add("bg-yellow-100"));
-
-        const letters = document.querySelectorAll("h1 span span");
-        letters.forEach((letter, index) => {
-          setTimeout(() => {
-            letter.classList.remove("!opacity-100");
-            letter.classList.remove("!translate-y-0");
-            letter.classList.remove("translate-y-96");
-            letter.classList.add("-translate-y-96");
-          }, index * 85);
-        });
-
         const menu = document.getElementById("menu-js");
-        menu.classList.add("!h-full");
-        menu.classList.remove("rounded-2xl");
-
+        const lines = menuButton.querySelectorAll("span");
+        const letters = document.querySelectorAll("h1 span span");
         const menuPortfolio = document.getElementById("menu-portfolio");
         const portfolioLetters = menuPortfolio.querySelectorAll("span");
-        if (portfolioLetters) {
-          portfolioLetters.forEach((letter, index) => {
-            setTimeout(() => {
-              letter.classList.add("!opacity-100");
-              letter.classList.add("!translate-y-0");
-            }, index * 85);
-          });
-        }
-
         const menuContact = document.getElementById("menu-contact");
         const contactLetters = menuContact.querySelectorAll("span");
-        if (contactLetters) {
-          contactLetters.forEach((letter, index) => {
+
+        if (!menuButton.classList.contains("active")) {
+          setTimeout(() => {
+            menuButton.classList.add("hover:scale-150");
+            menuButton.classList.add("active");
+            lines.forEach((line) => {
+              line.classList.add("bg-yellow-100");
+              line.classList.add("!w-12");
+            });
+            lines[0].classList.add("rotate-45");
+            lines[0].classList.add("translate-y-[4.5px]");
+            lines[1].classList.add("-rotate-45");
+            lines[1].classList.add("-translate-y-[4.5px]");
+          }, 700);
+
+          letters.forEach((letter, index) => {
             setTimeout(() => {
-              letter.classList.add("!opacity-100");
-              letter.classList.add("!translate-y-0");
+              letter.classList.remove("!opacity-100");
+              letter.classList.remove("!translate-y-0");
+              letter.classList.remove("translate-y-96");
+              letter.classList.add("-translate-y-96");
             }, index * 85);
           });
+
+          menu.classList.add("!h-full");
+
+          if (portfolioLetters) {
+            portfolioLetters.forEach((letter, index) => {
+              setTimeout(() => {
+                letter.classList.add("!opacity-100");
+                letter.classList.add("!translate-y-0");
+              }, index * 85);
+            });
+          }
+
+          if (contactLetters) {
+            contactLetters.forEach((letter, index) => {
+              setTimeout(
+                () => {
+                  letter.classList.add("!opacity-100");
+                  letter.classList.add("!translate-y-0");
+                },
+                index * 100 + 1200
+              );
+            });
+          }
+        } else {
+          if (contactLetters) {
+            contactLetters.forEach((letter, index) => {
+              setTimeout(() => {
+                letter.classList.remove("!opacity-100");
+                letter.classList.remove("!translate-y-0");
+              }, index * 100);
+            });
+          }
+
+          if (portfolioLetters) {
+            portfolioLetters.forEach((letter, index) => {
+              setTimeout(() => {
+                letter.classList.remove("!opacity-100");
+                letter.classList.remove("!translate-y-0");
+              }, index * 100);
+            });
+          }
+
+          setTimeout(() => menu.classList.remove("!h-full"), 500);
+
+          letters.forEach((letter, index) => {
+            setTimeout(
+              () => {
+                letter.classList.add("!opacity-100");
+                letter.classList.add("!translate-y-0");
+                letter.classList.add("translate-y-96");
+                letter.classList.remove("-translate-y-96");
+              },
+              index * 85 + 700
+            );
+          });
+
+          setTimeout(() => {
+            menuButton.classList.remove("hover:scale-150");
+            menuButton.classList.remove("active");
+            lines.forEach((line) => {
+              line.classList.remove("bg-yellow-100");
+              line.classList.remove("!w-12");
+            });
+            lines[0].classList.remove("rotate-45");
+            lines[0].classList.remove("translate-y-[4.5px]");
+            lines[1].classList.remove("-rotate-45");
+            lines[1].classList.remove("-translate-y-[4.5px]");
+          }, 1000);
         }
       });
     }
