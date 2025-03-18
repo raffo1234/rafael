@@ -3,39 +3,19 @@ const { title } = Astro.props;
 const titleArray = title.split("");
 ---
 
-<div class="p-6 relative h-svh">
-  <button
-    id="menu-button-js"
-    type="button"
-    class="flex transition-all duration-500 ease-in-out flex-col space-y-2 w-12 h-12 group justify-center fixed right-6 top-6 z-50"
-  >
-    <span
-      class="w-12 group-hover:w-9 transition-all duration-500 ease-in-out h-0.5 block bg-black"
-    ></span>
-    <span
-      class="w-9 h-0.5 group-hover:w-12 transition-all duration-500 ease-in-out block bg-black"
-    ></span>
-  </button>
-  <h1
-    id="title-js"
-    class="opacity-0 h-full transition-opacity duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-green-800 font-cinzel items-center leading-tight"
-    style={{
-      fontSize: "clamp(20px, 13vw + .5rem, 200px)",
-    }}
-  >
-    {
-      titleArray.map((title: string) => {
-        if (title === "") return " ";
-        return (
-          <span class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out -ml-[2px] md:-ml-1">
-            {title}
-          </span>
-        );
-      })
-    }
-  </h1>
-</div>
-<nav class="z-50 relative">
+<button
+  id="menu-button-js"
+  type="button"
+  class="flex transition-all duration-500 ease-in-out flex-col space-y-2 w-12 h-12 group justify-center fixed right-6 top-6 z-50"
+>
+  <span
+    class="w-12 group-hover:w-9 transition-all duration-500 ease-in-out h-0.5 block bg-black"
+  ></span>
+  <span
+    class="w-9 h-0.5 group-hover:w-12 transition-all duration-500 ease-in-out block bg-black"
+  ></span>
+</button>
+<nav class="z-40 relative">
   <ul
     id="menu-js"
     class="fixed w-full left-0 bottom-0 h-0 delay-700 transition-all duration-700 ease-in-out bg-green-800 flex flex-col justify-center font-cinzel leading-[1]"
@@ -127,6 +107,26 @@ const titleArray = title.split("");
     </li>
   </ul>
 </nav>
+<div class="p-6 relative h-svh z-40">
+  <h1
+    id="title-js"
+    class="opacity-0 h-full transition-opacity duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-green-800 font-cinzel items-center leading-tight"
+    style={{
+      fontSize: "clamp(20px, 13vw + .5rem, 200px)",
+    }}
+  >
+    {
+      titleArray.map((title: string) => {
+        if (title === "") return " ";
+        return (
+          <span class="opacity-0 block translate-y-96 transition-all duration-700 ease-in-out -ml-[2px] md:-ml-1">
+            {title}
+          </span>
+        );
+      })
+    }
+  </h1>
+</div>
 
 <script is:inline>
   document.addEventListener("astro:page-load", () => {
