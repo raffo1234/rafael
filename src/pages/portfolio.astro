@@ -16,49 +16,63 @@ import Logo from "../components/Logo.astro";
 const images = [
   {
     src: tiger,
+    year: 2015,
     alt: "Tiger",
     focus: "Focus on: CSS, Javascript, GSAP",
     href: "https://rafaelmeza.com/portfolio/tiger/index.html",
   },
   {
     src: cancino,
+    year: 2016,
     alt: "Cancino",
     focus: "Focus on: CSS, Javascript, GSAP",
+    href: "https://rafaelmeza.com/portfolio/cancino/index.html",
   },
   {
     src: renta2014,
+    year: 2014,
     alt: "SUNAT Renta 2014",
     focus: "Focus on: CSS, Javascript, GSAP",
   },
   {
     src: travelmax,
+    year: 2016,
     alt: "TravelMax",
     focus: "Focus on: CSS, Javascript, GSAP, Jquery",
+    href: "https://rafaelmeza.com/portfolio/travelmax/index.html",
   },
   {
     src: yachay,
+    year: 2016,
     alt: "Yachay",
     focus: "Focus on: CSS, Javascript, GSAP, Angular",
   },
   {
     src: grupon,
+    year: 2015,
     alt: "Grupon",
     focus: "Focus on: CSS, Javascript, GSAP, Jquery",
+    href: "https://rafaelmeza.com/portfolio/alignet/flujo_pago_1.html",
   },
   {
     src: laive,
+    year: 2015,
     alt: "Laive",
     focus: "Focus on: CSS, Javascript, GSAP, Jquery",
+    href: "https://rafaelmeza.com/portfolio/laive/index.html",
   },
   {
     src: yachayDashboard,
+    year: 2016,
     alt: "Yachay Dashboard",
     focus: "Focus on: CSS, Javascript, GSAP, Angular",
   },
   {
     src: goldenpalace,
+    year: 2015,
     alt: "Golden Palace",
     focus: "Focus on: CSS, Javascript, GSAP",
+    href: "https://rafaelmeza.com/portfolio/goldenpalace/index.html",
   },
 ];
 ---
@@ -71,7 +85,7 @@ const images = [
     class="w-full projects overflow-hidden min-h-lvh p-4 md:p-6 flex flex-col lg:block"
   >
     {
-      images.map(({ src, focus, alt, href }, index) => {
+      images.map(({ src, focus, alt, href, year }, index) => {
         return (
           <article
             class={`w-full h-lvh project project${index + 1} flex flex-col md:flex-row relative`}
@@ -85,8 +99,11 @@ const images = [
               class={`relative project-info project-${index}-info md:opacity-0 transition-all duration-700 ease-in-out w-full md:w-0 relative md:h-full flex items-center`}
             >
               <div class="md:w-[300px] md:absolute left-0 top-1/2 md:-translate-y-1/2">
+                <p class="text-white bg-green-800 p-2 rounded-sm text-xs inline-block">
+                  {year}
+                </p>
                 <h2
-                  class="font-cinzel leading-tight nowrap"
+                  class="font-cinzel leading-tight nowrap mb-6"
                   style={{
                     fontSize: "clamp(20px, 3vw + .4rem, 80px)",
                   }}

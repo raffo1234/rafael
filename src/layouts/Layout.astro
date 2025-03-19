@@ -56,13 +56,15 @@ const { pageTitle } = Astro.props;
 
         document.querySelectorAll("a").forEach((link) => {
           link.addEventListener("click", (event) => {
-            event.preventDefault();
-            const path = event.currentTarget.getAttribute("href");
+            if (event.currentTarget.getAttribute("target") !== "_blank") {
+              event.preventDefault();
+              const path = event.currentTarget.getAttribute("href");
 
-            document.body.classList.add("opacity-0");
-            setTimeout(() => {
-              window.location.href = path;
-            }, 700);
+              document.body.classList.add("opacity-0");
+              setTimeout(() => {
+                window.location.href = path;
+              }, 700);
+            }
           });
         });
       });
