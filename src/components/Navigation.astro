@@ -13,10 +13,12 @@ const options = [
 ];
 ---
 
-<nav class="z-40 relative">
+<nav
+  id="menu-js"
+  class="z-40 fixed w-full left-0 bottom-0 right-0 overflow-hidden h-0 delay-700 transition-all duration-700 ease-in-out bg-green-800 flex flex-col justify-center"
+>
   <ul
-    id="menu-js"
-    class="fixed w-full left-0 bottom-0 h-0 delay-700 transition-all duration-700 ease-in-out bg-green-800 flex flex-col justify-center font-cinzel leading-[1]"
+    class="font-cinzel leading-[1]"
     style={{
       fontSize: "clamp(20px, 13vw + .5rem, 200px)",
     }}
@@ -30,7 +32,7 @@ const options = [
           >
             <span class="flex w-full" id={id}>
               {text.split("").map((letter: string) => (
-                <span class="delay-500 opacity-0 block translate-y-96 transition-all ease-in-out duration-700">
+                <span class="opacity-0 block translate-y-96 transition-all ease-in-out duration-700">
                   {letter}
                 </span>
               ))}

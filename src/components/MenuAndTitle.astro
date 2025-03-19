@@ -18,7 +18,7 @@ const titleArray = title.split("");
   ></span>
 </button>
 <Navigation />
-<div class="p-6 relative h-svh">
+<div class="p-6 relative h-lvh">
   <h1
     id="title-js"
     class="opacity-0 h-full transition-opacity duration-500 ease-in-out w-full overflow-hidden flex space-x-1 justify-center absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-green-800 font-cinzel items-center leading-tight"
@@ -42,11 +42,6 @@ const titleArray = title.split("");
 <script is:inline>
   document.addEventListener("astro:page-load", () => {
     const classes = ["!opacity-100", "!translate-y-0"];
-
-    const logo = document.getElementById("logo-js");
-    if (logo) {
-      logo.classList.add(...classes);
-    }
 
     const title = document.getElementById("title-js");
 

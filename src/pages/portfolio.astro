@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import tiger from "../assets/portfolio/tiger.png";
@@ -11,7 +10,6 @@ import laive from "../assets/portfolio/laive.png";
 import yachayDashboard from "../assets/portfolio/dashboard-yachay.png";
 import cancino from "../assets/portfolio/cancino.png";
 import goldenpalace from "../assets/portfolio/goldenpalace.png";
-import Container from "../components/Container.astro";
 import MenuAndTitle from "../components/MenuAndTitle.astro";
 import Logo from "../components/Logo.astro";
 
@@ -31,63 +29,72 @@ const images = [
 <Logo />
 <Layout pageTitle="Projects">
   <MenuAndTitle title="Portfolio" />
-  <Container>
-    <div
-      transition:name="projects"
-      class="w-full max-w-[1250px] bg-orange mx-auto rounded-[32px] lg:rounded-[52px] flex relative"
-    >
-      <div
-        class="relative opacity-0 transition-all translate-y-4 ease-in-out duration-700 flex w-full"
-        id="slider-container-js"
-      >
-        {
-          images.map((image, index) => {
-            return (
+  <section
+    id="smooth-wrapper"
+    class="w-full projects overflow-hidden min-h-lvh"
+  >
+    <div class="w-full">
+      {
+        images.map((image, index) => {
+          return (
+            <article class={`w-full h-lvh absolute project${index + 1}`}>
               <Image
                 src={image}
-                class={`${index === 0 ? "!opacity-100" : ""}  slide-js opacity-0 transition-opacity ease-in-out duration-1000 absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 object-contain w-[95%] h-[95%]`}
+                class={` ${index === 0 ? "!opacity-100" : ""} transition-opacity ease-in-out duration-1000 object-contain w-auto h-[86%] mx-auto`}
                 alt="Rafael Meza | Portfolio"
               />
-            );
-          })
-        }
-      </div>
+            </article>
+          );
+        })
+      }
     </div>
-  </Container>
+  </section>
 </Layout>
 
-<script is:inline>
-  document.addEventListener("keyup", function (event) {
-    if (event.key === "Escape") {
-      window.location.href = "/";
-    }
-  });
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  document.addEventListener("astro:page-load", () => {
-    const logoClasses = ["!opacity-100", "!translate-y-0"];
-    const logo = document.getElementById("logo-js");
-    if (logo) {
-      logo.classList.add(...logoClasses);
-    }
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.defaults({ duration: 2 });
 
-    const sliderContainer = document.getElementById("slider-container-js");
-    if (!sliderContainer) return;
-    const classes = ["!translate-y-0", "!opacity-100"];
-    sliderContainer.classList.add(...classes);
+  const tl = gsap.timeline();
 
-    let currentSlide = 0;
+  tl.from(".project1", {
+    xPercent: -100,
+  })
+    .from(".project2", {
+      xPercent: 100,
+    })
+    .from(".project3", {
+      xPercent: -100,
+    })
+    .from(".project4", {
+      xPercent: 100,
+    })
+    .from(".project5", {
+      xPercent: -100,
+    })
+    .from(".project6", {
+      xPercent: 100,
+    })
+    .from(".project7", {
+      xPercent: -100,
+    })
+    .from(".project8", {
+      xPercent: 100,
+    })
+    .from(".project9", {
+      xPercent: -100,
+    });
 
-    const showNextSlide = (slides) => {
-      for (const el of slides) {
-        el.classList.remove("!opacity-100");
-      }
-      slides[currentSlide].classList.add("!opacity-100");
-      currentSlide = (currentSlide + 1) % slides.length;
-    };
-
-    const slides = document.querySelectorAll(".slide-js");
-    if (slides.length > 0) {
-      setInterval(showNextSlide, 1200, slides);
-    }
+  ScrollTrigger.create({
+    animation: tl,
+    trigger: ".projects",
+    start: "top 10%",
+    end: "+=4000",
+    scrub: true,
+    pin: true,
+    anticipatePin: 1,
   });
 </script>
