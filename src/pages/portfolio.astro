@@ -73,15 +73,15 @@ const images = [
       images.map(({ src, focus, alt }, index) => {
         return (
           <article
-            class={`w-full h-lvh project${index + 1} flex flex-col md:flex-row relative`}
+            class={`w-full h-lvh project project${index + 1} flex flex-col md:flex-row relative`}
           >
             <Image
               src={src}
-              class={`project${index + 1}-image ${index === 0 ? "!opacity-100" : ""} w-[80%] md:w-1/2 max-w-full md:aspect-square transition-opacity ease-in-out duration-700 object-contain mx-auto`}
+              class={`project-image  project-${index}-image ${index === 0 ? "!opacity-100" : ""} w-[80%] md:w-1/2 max-w-full md:aspect-square transition-all ease-in-out duration-700 object-contain mx-auto`}
               alt={`${alt} - Rafael Meza | Portfolio`}
             />
             <div
-              class={`relative project project${index + 1}-info md:opacity-0 transition-all duration-700 ease-in-out w-full md:w-0 relative md:h-full flex items-center`}
+              class={`relative project-info project-${index}-info md:opacity-0 transition-all duration-700 ease-in-out w-full md:w-0 relative md:h-full flex items-center`}
             >
               <div class="md:w-[300px] md:absolute left-0 top-1/2 md:-translate-y-1/2">
                 <h2
@@ -106,8 +106,15 @@ const images = [
 
 <style>
   .active {
-    opacity: 1 !important;
-    width: 33.33334% !important;
+    .project-image {
+      scale: 1.2;
+      transform: translateX(2%);
+    }
+
+    .project-info {
+      opacity: 1 !important;
+      width: 33.33334% !important;
+    }
   }
 </style>
 
@@ -125,7 +132,7 @@ const images = [
   Array.from(nodelist).map((element, index) => {
     gsap.to(element, {
       scrollTrigger: {
-        trigger: `.project${index + 1}-info`,
+        trigger: `.project${index + 1}`,
         start: "top 50%",
         end: "bottom 80%",
         toggleClass: "active",
