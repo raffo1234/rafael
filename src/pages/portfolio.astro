@@ -7,6 +7,7 @@ import travelmax from "../assets/portfolio/travelmax.png";
 import yachay from "../assets/portfolio/yachay.png";
 import grupon from "../assets/portfolio/grupon.png";
 import laive from "../assets/portfolio/laive.png";
+import rafael from "../assets/portfolio/rafael.png";
 import yachayDashboard from "../assets/portfolio/dashboard-yachay.png";
 import cancino from "../assets/portfolio/cancino.png";
 import goldenpalace from "../assets/portfolio/goldenpalace.png";
@@ -15,11 +16,20 @@ import Logo from "../components/Logo.astro";
 
 const images = [
   {
+    src: rafael,
+    year: 2025,
+    alt: "Rafael Meza",
+    focus: "Focus on: CSS, Javascript, GSAP, AstroJS",
+    href: "https://github.com/raffo1234/rafael",
+    buttonText: "View on Github",
+  },
+  {
     src: tiger,
     year: 2015,
     alt: "Tiger",
     focus: "Focus on: CSS, Javascript, GSAP",
     href: "https://rafaelmeza.com/portfolio/tiger/index.html",
+    buttonText: "View Online",
   },
   {
     src: cancino,
@@ -27,12 +37,14 @@ const images = [
     alt: "Cancino",
     focus: "Focus on: CSS, Javascript, GSAP",
     href: "https://rafaelmeza.com/portfolio/cancino/index.html",
+    buttonText: "View Online",
   },
   {
     src: renta2014,
     year: 2014,
     alt: "SUNAT Renta 2014",
     focus: "Focus on: CSS, Javascript, GSAP",
+    buttonText: "View Online",
   },
   {
     src: travelmax,
@@ -40,12 +52,14 @@ const images = [
     alt: "TravelMax",
     focus: "Focus on: CSS, Javascript, GSAP, Jquery",
     href: "https://rafaelmeza.com/portfolio/travelmax/index.html",
+    buttonText: "View Online",
   },
   {
     src: yachay,
     year: 2016,
     alt: "Yachay",
     focus: "Focus on: CSS, Javascript, GSAP, Angular",
+    buttonText: "View Online",
   },
   {
     src: grupon,
@@ -53,6 +67,7 @@ const images = [
     alt: "Grupon",
     focus: "Focus on: CSS, Javascript, GSAP, Jquery",
     href: "https://rafaelmeza.com/portfolio/alignet/flujo_pago_1.html",
+    buttonText: "View Online",
   },
   {
     src: laive,
@@ -60,12 +75,14 @@ const images = [
     alt: "Laive",
     focus: "Focus on: CSS, Javascript, GSAP, Jquery",
     href: "https://rafaelmeza.com/portfolio/laive/index.html",
+    buttonText: "View Online",
   },
   {
     src: yachayDashboard,
     year: 2016,
     alt: "Yachay Dashboard",
     focus: "Focus on: CSS, Javascript, GSAP, Angular",
+    buttonText: "View Online",
   },
   {
     src: goldenpalace,
@@ -73,6 +90,7 @@ const images = [
     alt: "Golden Palace",
     focus: "Focus on: CSS, Javascript, GSAP",
     href: "https://rafaelmeza.com/portfolio/goldenpalace/index.html",
+    buttonText: "View Online",
   },
 ];
 ---
@@ -85,7 +103,7 @@ const images = [
     class="w-full projects overflow-hidden min-h-lvh p-4 md:p-6 flex flex-col lg:block"
   >
     {
-      images.map(({ src, focus, alt, href, year }, index) => {
+      images.map(({ src, focus, alt, href, year, buttonText }, index) => {
         return (
           <article
             class={`w-full h-lvh project project${index + 1} flex flex-col md:flex-row relative`}
@@ -124,7 +142,7 @@ const images = [
                       fontSize: "clamp(16px, 2vw + .4rem, 24px)",
                     }}
                   >
-                    View Online
+                    {buttonText}
                     <span class="h-[2px] transition-all duration-700 ease-in-out mt-2 group-hover:w-full w-12 bg-black block" />
                   </a>
                 ) : null}
