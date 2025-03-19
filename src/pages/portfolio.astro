@@ -18,6 +18,7 @@ const images = [
     src: tiger,
     alt: "Tiger",
     focus: "Focus on: CSS, Javascript, GSAP",
+    href: "",
   },
   {
     src: cancino,
@@ -70,7 +71,7 @@ const images = [
     class="w-full projects overflow-hidden min-h-lvh p-4 md:p-6 flex flex-col lg:block"
   >
     {
-      images.map(({ src, focus, alt }, index) => {
+      images.map(({ src, focus, alt, href }, index) => {
         return (
           <article
             class={`w-full h-lvh project project${index + 1} flex flex-col md:flex-row relative`}
@@ -95,6 +96,18 @@ const images = [
                 <p class="text-sm md:text-xl lg:text-2xl font-nixie-one leading-relaxed">
                   {focus}
                 </p>
+                {href ? (
+                  <a
+                    href={href}
+                    class="font-cinzel group mt-12 inline-block"
+                    style={{
+                      fontSize: "clamp(16px, 2vw + .4rem, 24px)",
+                    }}
+                  >
+                    View Online
+                    <span class="h-[2px] transition-all duration-700 ease-in-out mt-2 group-hover:w-full w-12 bg-black block" />
+                  </a>
+                ) : null}
               </div>
             </div>
           </article>
