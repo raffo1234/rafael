@@ -56,7 +56,7 @@ const images = [
   },
   {
     src: goldenpalace,
-    alt: "Goldel Palace",
+    alt: "Golden Palace",
     focus: "Focus on: CSS, Javascript, GSAP",
   },
 ];
@@ -67,32 +67,32 @@ const images = [
   <MenuAndTitle title="Portfolio" />
   <section
     id="smooth-wrapper"
-    class="w-full projects overflow-hidden min-h-lvh p-4 lg:p-6 flex flex-col lg:block"
+    class="w-full projects overflow-hidden min-h-lvh p-4 md:p-6 flex flex-col lg:block"
   >
     {
       images.map(({ src, focus, alt }, index) => {
         return (
           <article
-            class={`w-full h-lvh project${index + 1} flex flex-col lg:flex-row relative`}
+            class={`w-full h-lvh project${index + 1} flex flex-col md:flex-row relative`}
           >
             <Image
               src={src}
-              class={`project${index + 1}-image ${index === 0 ? "!opacity-100" : ""} w-[80%] lg:w-1/2 max-w-full lg:aspect-square transition-opacity ease-in-out duration-700 object-contain mx-auto`}
+              class={`project${index + 1}-image ${index === 0 ? "!opacity-100" : ""} w-[80%] md:w-1/2 max-w-full md:aspect-square transition-opacity ease-in-out duration-700 object-contain mx-auto`}
               alt={`${alt} - Rafael Meza | Portfolio`}
             />
             <div
-              class={`relative project project${index + 1}-info lg:opacity-0 transition-all duration-700 ease-in-out w-full lg:w-0 relative lg:h-full flex items-center`}
+              class={`relative project project${index + 1}-info md:opacity-0 transition-all duration-700 ease-in-out w-full md:w-0 relative md:h-full flex items-center`}
             >
-              <div class="lg:w-[500px] lg:absolute left-0 top-1/2 lg:-translate-y-1/2 ">
+              <div class="md:w-[300px] md:absolute left-0 top-1/2 md:-translate-y-1/2">
                 <h2
                   class="font-cinzel leading-tight nowrap"
                   style={{
-                    fontSize: "clamp(20px, 7vw + .4rem, 80px)",
+                    fontSize: "clamp(20px, 3vw + .4rem, 80px)",
                   }}
                 >
                   {alt}
                 </h2>
-                <p class="lg:text-2xl font-nixie-one leading-relaxed">
+                <p class="text-sm md:text-xl lg:text-2xl font-nixie-one leading-relaxed">
                   {focus}
                 </p>
               </div>
