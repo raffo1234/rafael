@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import { supabase } from "../lib/supabase";
+
+let { data, error } = await supabase.from("users").select("id");
+
+console.log({ supabase });
+console.log({ data });
+console.log({ error });
+---
+
+<Layout pageTitle="Users">
+  <h1>Users</h1>
+  <section>
+    111
+    <!-- {
+      data?.map((user) => {
+        return (
+          <div>
+            <h1>Username: {user.username}</h1>
+            <p>Email: {user.email}</p>
+          </div>
+        );
+      })
+    } -->
+    22
+  </section>
+</Layout>
