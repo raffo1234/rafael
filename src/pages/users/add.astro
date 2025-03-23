@@ -28,6 +28,8 @@ async function insertData(data: User) {
 
 const users = await fetchData();
 
+let insertResult;
+
 if (Astro.request.method === "POST") {
   const formData = await Astro.request.formData();
   const newUser: User = {
@@ -36,7 +38,7 @@ if (Astro.request.method === "POST") {
     password: formData.get("password") as string,
   };
 
-  const insertResult = await insertData(newUser);
+  insertResult = await insertData(newUser);
   if (insertResult.success) {
     await fetchData();
   }
@@ -94,6 +96,26 @@ if (!users) return null;
           />
         </fieldset>
       </div>
+      {
+        insertResult?.success && (
+          <div
+            class="bg-green-200 bg-opacity-40 text-sm p-4 mt-6 rounded-md text-green-950"
+            role="alert"
+          >
+            User was added successfully!
+          </div>
+        )
+      }
+      {
+        insertResult?.error && (
+          <div
+            class="bg-red-300 bg-opacity-40 text-sm p-4 mt-6 rounded-md text-red-950"
+            role="alert"
+          >
+            There was an error creating the user: {insertResult.error}
+          </div>
+        )
+      }
       <div class="flex gap-4 mt-10">
         <a
           href="/users"
@@ -105,10 +127,6 @@ if (!users) return null;
           class="block px-6 flex-grow font-bold text-sm py-2 bg-blue-500 text-white rounded-md"
           >Add User</button
         >
-      </div>
-      <div class="alert" role="alert">
-        A quick alert conveying key information or prompting action within a
-        system.
       </div>
     </form>
   </section>
