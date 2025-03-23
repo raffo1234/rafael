@@ -3,18 +3,13 @@ import Layout from "../layouts/Layout.astro";
 
 import { supabase } from "../lib/supabase";
 
-let { data, error } = await supabase.from("users").select("id");
-
-console.log({ supabase });
-console.log({ data });
-console.log({ error });
+let { data } = await supabase.from("user").select("*");
 ---
 
 <Layout pageTitle="Users">
   <h1>Users</h1>
   <section>
-    111
-    <!-- {
+    {
       data?.map((user) => {
         return (
           <div>
@@ -23,7 +18,6 @@ console.log({ error });
           </div>
         );
       })
-    } -->
-    22
+    }
   </section>
 </Layout>

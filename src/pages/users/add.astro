@@ -1,0 +1,70 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { supabase } from "../../lib/supabase";
+
+interface User {
+  username: string;
+  email: string;
+  password?: string;
+  created_at?: string;
+}
+
+async function fetchData() {
+  const { data: users } = await supabase
+    .from("user")
+    .select("*")
+    .order("created_at", { ascending: false });
+  return users;
+}
+
+async function insertData(data: User) {
+  const { error } = await supabase.from("user").insert([data]);
+  if (error) {
+    console.error("Error inserting data:", error);
+    return { success: false, error: error.message };
+  }
+  return { success: true };
+}
+
+const users = await fetchData();
+
+if (Astro.request.method === "POST") {
+  const formData = await Astro.request.formData();
+  const newUser: User = {
+    username: formData.get("username") as string,
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
+  };
+
+  const insertResult = await insertData(newUser);
+  if (insertResult.success) {
+    await fetchData();
+  }
+}
+
+if (!users) return null;
+---
+
+<Layout>
+  {
+    users.map(({ username, email }: User) => (
+      <div>
+        <h1>Username: {username}</h1>
+        <p>Email: {email}</p>
+      </div>
+    ))
+  }
+
+  <form method="post" action="/users/add">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required />
+
+    <button type="submit">Add User</button>
+  </form>
+</Layout>
