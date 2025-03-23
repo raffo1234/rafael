@@ -13,6 +13,7 @@
     "@astrojs/tailwind": "^5.1.4",
     "@astrojs/vercel": "^8.1.3",
     "@fontsource-variable/cinzel": "^5.2.5",
+    "@fontsource-variable/inter": "^5.2.5",
     "@fontsource/bebas-neue": "^5.2.5",
     "@fontsource/lobster": "^5.1.1",
     "@fontsource/manrope": "^5.1.1",

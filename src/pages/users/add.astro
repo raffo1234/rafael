@@ -46,25 +46,70 @@ if (!users) return null;
 ---
 
 <Layout>
-  {
-    users.map(({ username, email }: User) => (
-      <div>
-        <h1>Username: {username}</h1>
-        <p>Email: {email}</p>
+  <section class="max-w-2xl w-full mx-auto py-6 px-4">
+    <form method="post" action="/users/add">
+      <h2
+        class="text-center text-4xl font-semibold font-manrope tracking-tight text-balance text-gray-900 sm:text-5xl"
+      >
+        Add User
+      </h2>
+      <p class="mt-2 w-full text-center text-lg/8 text-gray-600 font-manrope">
+        Include the following fields in your form to add a new user
+      </p>
+      <div class="flex flex-col gap-4 mt-16">
+        <fieldset>
+          <label for="username" class="block font-bold mb-2 font-manrope"
+            >Username</label
+          >
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            class="w-full px-4 py-2 rounded-md border border-gray-200 focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
+          />
+        </fieldset>
+        <fieldset>
+          <label for="email" class="block mb-2.5 font-manrope font-bold"
+            >Email</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-2 rounded-md border border-gray-200 focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
+          />
+        </fieldset>
+        <fieldset>
+          <label for="password" class="block mb-2.5 font-manrope font-bold"
+            >Password</label
+          >
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            class="w-full px-4 py-2 rounded-md border border-gray-200 focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
+          />
+        </fieldset>
       </div>
-    ))
-  }
-
-  <form method="post" action="/users/add">
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" required />
-
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required />
-
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required />
-
-    <button type="submit">Add User</button>
-  </form>
+      <div class="flex gap-4 mt-10">
+        <a
+          href="/users"
+          class="block text-center font-bold text-sm flex-grow px-6 py-2 border-gray-200 bg-white border-width-2 border rounded-md"
+          >Cancel</a
+        >
+        <button
+          type="submit"
+          class="block px-6 flex-grow font-bold text-sm py-2 bg-blue-500 text-white rounded-md"
+          >Add User</button
+        >
+      </div>
+      <div class="alert" role="alert">
+        A quick alert conveying key information or prompting action within a
+        system.
+      </div>
+    </form>
+  </section>
 </Layout>

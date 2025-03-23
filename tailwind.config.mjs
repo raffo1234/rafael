@@ -10,6 +10,7 @@ export default {
       "bebas-neue": ["Bebas Neue", "sans-serif"],
       lobster: ["Lobster", "sans-serif"],
       "nixie-one": ["Nixie One", "sans-serif"],
+      inter: ["Inter Variable", "sans-serif"],
     },
     extend: {
       animation: {
