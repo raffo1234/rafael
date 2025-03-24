@@ -10,14 +10,6 @@ interface User {
   created_at?: string;
 }
 
-async function fetchData() {
-  const { data: users } = await supabase
-    .from("user")
-    .select("*")
-    .order("created_at", { ascending: false });
-  return users;
-}
-
 async function insertData(data: User) {
   const { error } = await supabase.from("user").insert([data]);
   if (error) {
@@ -26,8 +18,6 @@ async function insertData(data: User) {
   }
   return { success: true };
 }
-
-const users = await fetchData();
 
 let insertResult;
 
@@ -40,12 +30,11 @@ if (Astro.request.method === "POST") {
   };
 
   insertResult = await insertData(newUser);
+
   if (insertResult.success) {
-    await fetchData();
+    return Astro.redirect("/users");
   }
 }
-
-if (!users) return null;
 ---
 
 <Dashboard pageTitle="Add User">

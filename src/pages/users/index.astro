@@ -66,7 +66,7 @@ let { data } = await supabase
           </thead>
           <tbody>
             {
-              data?.map(({ username, email }, index) => {
+              data?.map(({ username, email, id }, index) => {
                 return (
                   <tr
                     class={`hover:bg-emerald-50  ${index % 2 === 0 ? "bg-gray-100" : ""}`}
@@ -75,7 +75,7 @@ let { data } = await supabase
                     <td>{email}</td>
                     <td class="text-center">
                       <a
-                        href="/users/edit"
+                        href={`/users/edit/${id}`}
                         class="inline-block text-500 hover:text-blue-500 py-2 px-5 text-sm"
                       >
                         Edit
