@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 
 import tailwind from "@astrojs/tailwind";
 
@@ -9,9 +9,22 @@ import vercel from "@astrojs/vercel";
 
 import react from "@astrojs/react";
 
-// https://astro.build/config
 export default defineConfig({
-  // output: "server",
+  output: "server",
   integrations: [tailwind(), icon(), react()],
   adapter: vercel(),
+  env: {
+    schema: {
+      SUPABASE_URL: envField.string({
+        context: "client",
+        access: "public",
+        optional: true,
+      }),
+      SUPABASE_ANON_KEY: envField.string({
+        context: "client",
+        access: "public",
+        optional: true,
+      }),
+    },
+  },
 });
