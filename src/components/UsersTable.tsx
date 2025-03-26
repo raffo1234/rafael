@@ -26,7 +26,7 @@ export default function UsersTable() {
 
   const onDelete = async (id: string | undefined) => {
     const confirmationMessage = confirm(
-      "Are you sure you want to delete this item?"
+      "Are you sure you want to delete this item?",
     );
     if (!confirmationMessage) return;
 
