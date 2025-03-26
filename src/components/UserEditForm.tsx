@@ -1,5 +1,6 @@
 import type { FormEvent } from "react";
 import { supabase } from "../lib/supabase";
+import useSWR from "swr";
 
 interface User {
   id?: string;
@@ -7,7 +8,24 @@ interface User {
   email: string;
 }
 
-export default function UserEditForm({ user }: { user: User }) {
+async function fetcher(userId: string) {
+  const { data, error } = await supabase
+    .from("user")
+    .select()
+    .eq("id", userId)
+    .single();
+  if (error) throw error;
+  return data;
+}
+
+export default function UserEditForm({ userId }: { userId: string }) {
+  const {
+    data: user,
+    error,
+    isLoading,
+    mutate,
+  } = useSWR(userId ? `user?id=eq.${userId}` : null, () => fetcher(userId));
+
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -21,15 +39,21 @@ export default function UserEditForm({ user }: { user: User }) {
       email: eventTarget.email.value,
     } as User;
 
-    const { error } = await supabase
-      .from("user")
-      .update(formData)
-      .eq("id", user.id);
+    try {
+      const { data: updatedUser } = await supabase
+        .from("user")
+        .update(formData)
+        .eq("id", userId);
 
-    if (!error) {
+      mutate(updatedUser, false);
       window.location.href = "/users";
+    } catch (error) {
+      console.error(error);
     }
   };
+
+  if (error) return <div>Error loading item details</div>;
+  if (isLoading) return <div>Loading item details...</div>;
 
   return (
     <form onSubmit={onSubmit}>
