@@ -8,7 +8,7 @@ function SkeletonRow({ cols = 3 }) {
   );
 }
 
-export default function Skeleton({ rows = 3, cols = 1 }) {
+export default function TableSkeleton({ rows = 3, cols = 1 }) {
   return (
     <div className="flex flex-col gap-2">
       <div className="w-full flex gap-2 animate-pulse">

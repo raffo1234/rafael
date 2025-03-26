@@ -1,6 +1,7 @@
 import type { FormEvent } from "react";
 import { supabase } from "../lib/supabase";
 import useSWR from "swr";
+import FormSkeleton from "./FormSkeleton";
 
 interface User {
   id?: string;
@@ -53,11 +54,12 @@ export default function UserEditForm({ userId }: { userId: string }) {
   };
 
   if (error) return <div>Error loading item details</div>;
-  if (isLoading) return <div>Loading item details...</div>;
 
-  return (
+  return isLoading ? (
+    <FormSkeleton rows={2} />
+  ) : (
     <form onSubmit={onSubmit}>
-      <div className="flex flex-col gap-4 mt-16">
+      <div className="flex flex-col gap-4">
         <fieldset>
           <label
             htmlFor="username"

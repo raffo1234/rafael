@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
-import Skeleton from "./Skeleton";
+import TableSkeleton from "./TableSkeleton";
 import useSWR from "swr";
 
 interface User {
@@ -45,7 +44,7 @@ export default function UsersTable() {
   return (
     <>
       {isLoading ? (
-        <Skeleton cols={3} rows={3} />
+        <TableSkeleton cols={3} rows={3} />
       ) : (
         <table className="w-full text-md mb-4">
           <thead className="text-left uppercase font-normal text-xs">
