@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import Skeleton from "./Skeleton";
+import useSWR from "swr";
 
 interface User {
   id?: string;
@@ -10,39 +11,40 @@ interface User {
   created_at?: string;
 }
 
+const fetchUsers = async () => {
+  const { data, error } = await supabase.from("user").select("*");
+  if (error) throw error;
+  return data;
+};
+
 export default function UsersTable() {
-  const [users, setUsers] = useState<User[] | undefined>([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    data: users = [],
+    error,
+    isLoading,
+    mutate,
+  } = useSWR("users", fetchUsers);
 
   const onDelete = async (id: string | undefined) => {
     const confirmationMessage = confirm(
       "Are you sure you want to delete this item?"
     );
-
     if (!confirmationMessage) return;
 
-    const { error } = await supabase.from("user").delete().eq("id", id);
-    if (!error) {
-      setUsers(users?.filter((user) => user.id !== id));
+    try {
+      await supabase.from("user").delete().eq("id", id);
+      const updatedUsers = users.filter((user) => user.id !== id);
+      mutate(updatedUsers, false);
+    } catch (error) {
+      console.error("Error deleting user", error);
     }
   };
 
-  const fetchUsers = async () => {
-    const { data, error } = await supabase.from("user").select("*");
-    setLoading(false);
-    if (error) {
-      console.error(error);
-    }
-    setUsers(data || []);
-  };
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  if (error) return null;
 
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <Skeleton cols={3} rows={3} />
       ) : (
         <table className="w-full text-md mb-4">
