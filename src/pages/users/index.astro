@@ -1,11 +1,6 @@
 ---
+import UsersTable from "../../components/UsersTable";
 import Dashboard from "../../layouts/Dashboard.astro";
-import { supabase } from "../../lib/supabase";
-
-let { data } = await supabase
-  .from("user")
-  .select("*")
-  .order("created_at", { ascending: false });
 ---
 
 <Dashboard pageTitle="Users">
@@ -56,37 +51,7 @@ let { data } = await supabase
             >Add User
           </a>
         </div>
-        <table class="w-full text-md mb-4">
-          <thead class="text-left uppercase font-normal text-xs">
-            <tr>
-              <th class="text-left p-3 px-5">Username</th>
-              <th class="text-left p-3 px-5">Email</th>
-              <th class="text-left p-3 px-5 w-50">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              data?.map(({ username, email, id }, index) => {
-                return (
-                  <tr
-                    class={`hover:bg-emerald-50  ${index % 2 === 0 ? "bg-gray-100" : ""}`}
-                  >
-                    <td class="p-3 px-5">{username}</td>
-                    <td>{email}</td>
-                    <td class="text-center">
-                      <a
-                        href={`/users/edit/${id}`}
-                        class="inline-block text-500 hover:text-blue-500 py-2 px-5 text-sm"
-                      >
-                        Edit
-                      </a>
-                    </td>
-                  </tr>
-                );
-              })
-            }
-          </tbody>
-        </table>
+        <UsersTable />
       </section>
     </main>
   </div>
