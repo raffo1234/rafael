@@ -5,8 +5,6 @@ interface User {
   id?: string;
   username: string;
   email: string;
-  password?: string;
-  created_at?: string;
 }
 
 export default function UserEditForm({ user }: { user: User }) {
@@ -65,20 +63,20 @@ export default function UserEditForm({ user }: { user: User }) {
             name="email"
             defaultValue={user.email}
             required
-            className="w-full px-4 py-2 rounded-md border border-gray-200 focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-4 py-2 rounded-md border border-gray-200 focus:outline-none focus:outline-2 focus:ring focus:ring-blue-500 focus:border-blue-500"
           />
         </fieldset>
       </div>
       <footer className="mt-10">
         <a
           href="/users"
-          className="inline-block text-center font-bold text-sm flex-grow px-6 py-2 border-gray-200 bg-white border-width-2 border rounded-md"
+          className="inline-block py-2 px-10 flex-grow font-semibold text-lg bg-white border-gray-200 border-[1px] rounded-md"
         >
           Cancel
         </a>
         <button
           type="submit"
-          className="inline-block ml-4 px-6 flex-grow font-bold text-sm py-2 bg-blue-500 text-white rounded-md"
+          className="inline-block ml-4 py-2 px-10 flex-grow font-semibold text-lg bg-blue-500 text-white rounded-md"
         >
           Save
         </button>
