@@ -80,7 +80,7 @@ export default function UserEditForm({ user }: { user: User }) {
           type="submit"
           className="inline-block ml-4 px-6 flex-grow font-bold text-sm py-2 bg-blue-500 text-white rounded-md"
         >
-          Edit User
+          Save
         </button>
       </footer>
     </form>
