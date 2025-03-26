@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
+import Skeleton from "./Skeleton";
 
 interface User {
   id?: string;
@@ -11,6 +12,7 @@ interface User {
 
 export default function UsersTable() {
   const [users, setUsers] = useState<User[] | undefined>([]);
+  const [loading, setLoading] = useState(true);
 
   const onDelete = async (id: string | undefined) => {
     const confirmationMessage = confirm(
@@ -27,7 +29,7 @@ export default function UsersTable() {
 
   const fetchUsers = async () => {
     const { data, error } = await supabase.from("user").select("*");
-
+    setLoading(false);
     if (error) {
       console.error(error);
     }
@@ -39,44 +41,50 @@ export default function UsersTable() {
   }, []);
 
   return (
-    <table className="w-full text-md mb-4">
-      <thead className="text-left uppercase font-normal text-xs">
-        <tr>
-          <th className="text-left p-3 px-5">Username</th>
-          <th className="text-left p-3 px-5">Email</th>
-          <th className="text-left p-3 px-5 w-50">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users?.map(({ username, email, id }, index) => {
-          return (
-            <tr
-              key={id}
-              className={`hover:bg-emerald-50  ${index % 2 === 0 ? "bg-gray-100" : ""}`}
-            >
-              <td className="p-3 px-5">{username}</td>
-              <td>{email}</td>
-              <td className="text-center">
-                <div className="flex gap-2">
-                  <a
-                    href={`/users/edit/${id}`}
-                    className="inline-block text-500 hover:text-blue-500 py-2 px-5 text-sm"
-                  >
-                    Edit
-                  </a>
-                  <button
-                    onClick={() => onDelete(id)}
-                    type="button"
-                    className="inline-block text-500 hover:text-red-500 py-2 px-5 text-sm"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </td>
+    <>
+      {loading ? (
+        <Skeleton cols={3} rows={3} />
+      ) : (
+        <table className="w-full text-md mb-4">
+          <thead className="text-left uppercase font-normal text-xs">
+            <tr>
+              <th className="text-left p-3 px-5">Username</th>
+              <th className="text-left p-3 px-5">Email</th>
+              <th className="text-left p-3 px-5 w-50">Actions</th>
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          </thead>
+          <tbody>
+            {users?.map(({ username, email, id }, index) => {
+              return (
+                <tr
+                  key={id}
+                  className={`hover:bg-emerald-50  ${index % 2 === 0 ? "bg-gray-100" : ""}`}
+                >
+                  <td className="p-3 px-5">{username}</td>
+                  <td>{email}</td>
+                  <td className="text-center">
+                    <div className="flex gap-2">
+                      <a
+                        href={`/users/edit/${id}`}
+                        className="inline-block text-500 hover:text-blue-500 py-2 px-5 text-sm"
+                      >
+                        Edit
+                      </a>
+                      <button
+                        onClick={() => onDelete(id)}
+                        type="button"
+                        className="inline-block text-500 hover:text-red-500 py-2 px-5 text-sm"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      )}
+    </>
   );
 }
