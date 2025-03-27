@@ -82,6 +82,7 @@ export default function EditUser({ userId }: { userId: string }) {
         open={open}
         onCancel={hideModal}
         destroyOnClose
+        okText="Save"
         okButtonProps={{
           disabled: isLoading,
           form: "editUser",
