@@ -1,17 +1,13 @@
 import { supabase } from "../lib/supabase";
+import EditUser from "./EditUser";
 import TableSkeleton from "./TableSkeleton";
 import useSWR from "swr";
 
-interface User {
-  id?: string;
-  username: string;
-  email: string;
-  password?: string;
-  created_at?: string;
-}
-
 const fetchUsers = async () => {
-  const { data, error } = await supabase.from("user").select("*");
+  const { data, error } = await supabase
+    .from("user")
+    .select("*")
+    .order("created_at", { ascending: false });
   if (error) throw error;
   return data;
 };
@@ -26,7 +22,7 @@ export default function UsersTable() {
 
   const onDelete = async (id: string | undefined) => {
     const confirmationMessage = confirm(
-      "Are you sure you want to delete this item?",
+      "Are you sure you want to delete this item?"
     );
     if (!confirmationMessage) return;
 
@@ -65,12 +61,7 @@ export default function UsersTable() {
                   <td>{email}</td>
                   <td className="text-center">
                     <div className="flex gap-2">
-                      <a
-                        href={`/users/edit/${id}`}
-                        className="inline-block text-500 hover:text-blue-500 py-2 px-5 text-sm"
-                      >
-                        Edit
-                      </a>
+                      <EditUser userId={id} />
                       <button
                         onClick={() => onDelete(id)}
                         type="button"
