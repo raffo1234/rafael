@@ -22,6 +22,24 @@ export default {
           "100%": { opacity: 0 },
         },
       },
+      animation: {
+        fadeIn: "fadeIn .4s linear",
+      },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+      },
+      animation: {
+        fadeInTranslate: "fadeInTranslate .4s",
+      },
+      keyframes: {
+        fadeInTranslate: {
+          "0%": { opacity: 0, transform: "translate(0, 20px)" },
+          "100%": { opacity: 1, transform: "translate(0,0)" },
+        },
+      },
       colors: {
         yellow: {
           100: "#FEF8DD",

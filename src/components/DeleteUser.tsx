@@ -1,8 +1,9 @@
-import { Button, message, Modal } from "antd";
+import { message } from "antd";
 import { supabase } from "../lib/supabase";
 import { mutate } from "swr";
 import { useState } from "react";
-
+import Modal from "../components/Modal";
+import { Button } from "antd";
 export default function DeleteUser({ userId }: { userId: string }) {
   const [messageApi, contextHolder] = message.useMessage();
   const [open, setOpen] = useState(false);
@@ -31,7 +32,7 @@ export default function DeleteUser({ userId }: { userId: string }) {
   const deleteUser = async () => {
     try {
       await supabase.from("user").delete().eq("id", userId);
-      mutate("users");
+      await mutate("users");
       successMessage();
       hideModal();
     } catch (error) {
@@ -42,7 +43,7 @@ export default function DeleteUser({ userId }: { userId: string }) {
   };
 
   return (
-    <>
+    <div id="edit-user">
       <button
         onClick={showModal}
         type="button"
@@ -51,16 +52,15 @@ export default function DeleteUser({ userId }: { userId: string }) {
         Delete
       </button>
       {contextHolder}
-      <Modal
-        title="Delete User"
-        open={open}
-        onCancel={hideModal}
-        destroyOnClose
-        onOk={deleteUser}
-        okText="Delete"
-      >
-        Do you want to delete this user?
+      <Modal isOpen={open} setOpen={setOpen}>
+        <h2 className="font-bold mb-6">Do you want to delete this user?</h2>
+        <footer className="flex justify-end gap-2 w-full mt-3">
+          <Button onClick={hideModal}>Cancel</Button>
+          <Button type="primary" onClick={deleteUser}>
+            Delete
+          </Button>
+        </footer>
       </Modal>
-    </>
+    </div>
   );
 }
