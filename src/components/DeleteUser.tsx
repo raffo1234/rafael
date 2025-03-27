@@ -1,9 +1,10 @@
-import { Button, Modal } from "antd";
+import { Button, message, Modal } from "antd";
 import { supabase } from "../lib/supabase";
 import { mutate } from "swr";
 import { useState } from "react";
 
 export default function DeleteUser({ userId }: { userId: string }) {
+  const [messageApi, contextHolder] = message.useMessage();
   const [open, setOpen] = useState(false);
   const showModal = () => {
     setOpen(true);
@@ -13,13 +14,29 @@ export default function DeleteUser({ userId }: { userId: string }) {
     setOpen(false);
   };
 
+  const successMessage = () => {
+    messageApi.open({
+      type: "success",
+      content: "User deleted successfully!",
+    });
+  };
+
+  const errorMessage = () => {
+    messageApi.open({
+      type: "error",
+      content: "There was an error when deleting the user",
+    });
+  };
+
   const deleteUser = async () => {
     try {
       await supabase.from("user").delete().eq("id", userId);
       mutate("users");
-      // hideModal();
+      successMessage();
+      hideModal();
     } catch (error) {
       console.error("Error deleting user", error);
+      errorMessage();
       hideModal();
     }
   };
@@ -33,6 +50,7 @@ export default function DeleteUser({ userId }: { userId: string }) {
       >
         Delete
       </button>
+      {contextHolder}
       <Modal
         title="Delete User"
         open={open}

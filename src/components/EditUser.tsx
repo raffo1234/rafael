@@ -2,7 +2,7 @@ import FormSkeleton from "./FormSkeleton";
 import { supabase } from "../lib/supabase";
 import useSWR, { mutate } from "swr";
 import { useEffect, useMemo, useState } from "react";
-import { Modal } from "antd";
+import { Modal, message } from "antd";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 
@@ -22,12 +22,20 @@ type Inputs = {
 };
 
 export default function EditUser({ userId }: { userId: string }) {
+  const [messageApi, contextHolder] = message.useMessage();
   const [open, setOpen] = useState(false);
   const {
     data: user,
     error,
     isLoading,
   } = useSWR(userId, () => fetcher(userId));
+
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "User updated successfully!",
+    });
+  };
 
   const { reset, register, handleSubmit } = useForm<Inputs>({
     mode: "onBlur",
@@ -54,6 +62,7 @@ export default function EditUser({ userId }: { userId: string }) {
         .single();
       await mutate(userId, updatedUser);
       await mutate("users");
+      success();
       hideModal();
     } catch (error) {
       console.error(error);
@@ -77,6 +86,7 @@ export default function EditUser({ userId }: { userId: string }) {
       >
         Edit
       </button>
+      {contextHolder}
       <Modal
         title="Edit User"
         open={open}
